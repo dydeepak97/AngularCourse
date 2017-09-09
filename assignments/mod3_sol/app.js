@@ -12,15 +12,22 @@
     var list = this;
     list.searchTerm="";
     list.searchBtn = function(){
-      console.log(list.searchTerm);
-      list.promise = MenuSearchService.getMatchedMenuItems(list.searchTerm);
+      if( list.searchTerm.length>0 ){
 
-      list.promise.then(function(result){
+        console.log(list.searchTerm);
+
+        list.promise = MenuSearchService.getMatchedMenuItems(list.searchTerm);
+        list.promise.then(function(result){
         list.found = result;
 
-            console.log(result);
-      });
-    };
+        console.log(result);
+        });
+      }
+      else{
+        list.found = [];
+      }
+    }
+
 
     list.onRemove = function(index){
       list.found.splice(index,1);
@@ -44,8 +51,6 @@
 
         return response.then(function(result){
 
-          console.log(result.data);
-
           service.allItems=result.data.menu_items;
 
           service.searchList=[];
@@ -54,12 +59,13 @@
             if(service.allItems[i].description.indexOf(searchTerm) != -1){
               service.searchList.push(service.allItems[i]);
             }
-
           }
+
+          console.log(service.searchList);
 
           return service.searchList;
         }).catch(function(error){
-          return "ERRRRR";
+          return "ERROR";
         });
     };
   }
