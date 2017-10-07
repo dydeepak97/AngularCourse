@@ -1,0 +1,43 @@
+<html ng-app="menuApp">
+
+<head>
+  <title>Resturant Menu</title>
+
+  <!--CSS-->
+  <link rel="stylesheet" href="css/DYStyle.css">
+
+  <!-- Libraries-->
+  <script  src="lib/angular.min.js"></script>
+  <script src="lib/angular-ui-router.min.js"></script>
+
+  <!-- Module-->
+  <script type="text/javascript" src="src/data.module.js"></script>
+  <script type="text/javascript" src="src/menuapp.module.js"></script>
+
+  <!--Router-->
+  <script type="text/javascript" src="src/router.js"></script>
+
+  <!-- Artifacts -->
+  <script type="text/javascript" src="src/menudata.service.js"></script>
+  <script type="text/javascript" src="src/categories.component.js"></script>
+  <script type="text/javascript" src="src/categories.controller.js"></script>
+  <script type="text/javascript" src="src/details.controller.js"></script>
+  <script type="text/javascript" src="src/details.component.js"></script>
+
+  <!--Spinner-->
+  <script type="text/javascript" src="src/spinner.controller.js"></script>
+  <script type="text/javascript" src="src/spinner.component.js"></script>
+
+
+
+</head>
+
+<body>
+
+  <spinner></spinner>
+
+  <ui-view></ui-view>
+
+</body>
+
+</html>
