@@ -1,39 +1,31 @@
 (function () {
-"use strict";
+"use strict"
 
 angular.module('public')
-.controller('SignUpController', SignUpController);
+.controller('SignupController', SignupController);
 
-SignUpController.$inject = ['MenuService', 'MyInfoService'];
-function SignUpController(MenuService, MyInfoService) {
+SignupController.$inject = ['MenuService', '$scope'];
+
+function SignupController(MenuService, $scope){
   var $ctrl = this;
-  $ctrl.info = {};
-
-  $ctrl.submit = function() {
-      MenuService.getMenuItem($ctrl.info.favorite)
-        .then(function(response) {
-          $ctrl.invalidFavorite = false;
-          $ctrl.submitted = true;
-          MyInfoService.setInfo($ctrl.info);
-        })
-        .catch(function() {
-          $ctrl.invalidFavorite = true;
-        });
-
-
-    }
-
-    $ctrl.validateFavorite = function() {
-      MenuService.getMenuItem($ctrl.info.favorite)
-        .then(function () {
-          $ctrl.invalidFavorite = false;
-        })
-        .catch(function() {
-          $ctrl.invalidFavorite = true;
-        });
-    }
-
+  var $srvc = MenuService;
+  $scope.sucess=false;
+  $scope.user = {
+    // firstName : 'Leo',
+    // lastName : 'Mello',
+    // email : 'leo@leo',
+    // phone : '999-999-9999',
   };
 
+  $scope.$watch('user', function(error) {
+    $scope.sucess = false;
+  }, true);
+
+  $scope.test = function(form){
+    $srvc.setUserSignup($scope.user);
+    $scope.sucess=true;
+  }
+
+}
 
 })();
